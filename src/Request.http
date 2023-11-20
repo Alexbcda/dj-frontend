@@ -1,0 +1,63 @@
+POST http://localhost:1337/api/chanteurs
+Content-Type: application/json
+
+{
+    "data": {
+        "Nom": "VotreNom",
+        "Prenom": "VotrePrenom",
+        "Date_de_naissance": "VotreDateDeNaissance",
+        "musiques": [
+            {
+                "Titre": "VotreTitre",
+                "Artiste": "VotreArtiste",
+                "Genre": "VotreGenre",
+                "Annee": "VotreAnnee"
+            }
+        ]
+    }
+}
+
+// Il faut une ligne vide entre les deux requête
+
+POST http://localhost:1337/api/musiques
+Content-Type: application/json
+
+{
+    "data": {
+        "Titre": "VotreTitre",
+        "Chanteur": "2",
+        "Favoris": true,
+        "Sortie": "2020-02-03",
+        "Lien": "VotreLien"
+    }
+}
+
+###
+GET http://localhost:1337/api/musiques?populate=chanteur
+
+###
+GET http://localhost:1337/api/chanteurs
+
+###
+GET http://localhost:1337/api/musiques?filters[Favoris][$eq]=true&populate=chanteur
+
+###
+GET http://localhost:1337/api/musiques?sort=createdAt:desc&populate=chanteur
+
+###
+POST http://localhost:1337/api/auth/local
+content-type: application/json
+
+{
+    "identifier": "alexcdagrenoble@gmail.com",
+    "password": "12rc38130E"
+}
+
+###
+POST http://localhost:1337/api/auth/local
+content-type: application/json
+
+{
+    "identifier": "alexcdagrenoblsdfhcfgdtge@gmail.com",
+    "password": "12rc38130E"
+}
